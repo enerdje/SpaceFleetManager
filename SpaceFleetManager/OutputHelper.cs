@@ -16,16 +16,12 @@ namespace SpaceFleetManager
 		{
 			switch (Enum.Parse(typeof(OutputType), output))
 			{
-				case OutputType.Console:
-					WriteOnConsole();
-					break;
-				case OutputType.Xml:
-					XmlHelper.WriteToXml();
-					break;
+				case OutputType.Console:	WriteToConsole(); break;
+				case OutputType.Xml:		XmlHelper.WriteToXml(); break;
 			}
 		}
 
-		static void WriteOnConsole()
+		static void WriteToConsole()
 		{
 			string Separator = string.Concat(Enumerable.Repeat("=", 50));
 			Console.WriteLine(Separator);
