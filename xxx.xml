@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<space>
+	<ships>
+		<ship name="Amigo">
+			<range>LongRange</range>
+			<capacity>30</capacity>
+		</ship>
+		<ship name="Fargo">
+			<range>MiddleRange</range>
+			<capacity>60</capacity>
+		</ship>
+		<ship name="Chipmunk">
+			<range>NearRange</range>
+			<capacity>100</capacity>
+		</ship>
+		<ship name="Dale">
+			<range>NearRange</range>
+			<capacity>95</capacity>
+		</ship>		
+	</ships>
+	<planets>
+		<planet name="Earth">
+			<x>-0.00001581307</x>
+			<y>0.0</y>
+			<need>0</need>
+		</planet>
+		<planet name="Venus">
+			<x>0.000007906535</x>
+			<y>0.000003162614</y>
+			<need>400</need>
+		</planet>
+		<planet name="Mercury">	
+			<x>0.000004743921</x>
+			<y>-0.000004743921</y>
+			<need>180</need>
+		</planet>
+		<planet name="Mars">	
+			<x>0.000009487842</x>
+			<y>-0.000020556991</y>
+			<need>500</need>
+		</planet>
+		<planet name="Jupiter">
+			<x>0.000007906535</x>
+			<y>0.0000205556991</y>
+			<need>350</need>
+		</planet>
+		<planet name="Saturn">
+			<x>-0.000023719605</x>
+			<y>-0.00003162614</y>
+			<need>800</need>
+		</planet>
+		<planet name="Uranus">	
+			<x>-0.00004743921</x>
+			<y>0.000023719605</y>
+			<need>320</need>
+		</planet>
+		<planet name="Neptune">
+			<x>0.00003162614</x>
+			<y>-0.00004743921</y>
+			<need>800</need>
+		</planet>
+		<planet name="Pluto">	
+			<x>-0.00004743921</x>
+			<y>0.00004743921</y>
+			<need>1050</need>
+		</planet>
+	</planets>
+</space>
