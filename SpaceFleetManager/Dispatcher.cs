@@ -6,22 +6,33 @@ namespace SpaceFleetManager
 {
 	static class Dispatcher
 	{
-		/// <summary> Получить координату X планеты земля </summary>
-		public static double GetEarth_X => Program.planets.Where(o => o.Name == "Earth").First().X;
+		/// <summary> Список планет </summary>
+		public static List<Planet> planets = new List<Planet>();
 
-		/// <summary> Получить координату Y планеты земля </summary>
-		public static double GetEarth_Y => Program.planets.Where(o => o.Name == "Earth").First().Y;
+		/// <summary> Список кораблей </summary>
+		public static IReadOnlyList<ASpaceship> spaceShips = new List<ASpaceship>();
+
+		private static double GetEarth_X => planets.Where(o => o.Name == "Earth").First().X;
+
+		private static double GetEarth_Y => planets.Where(o => o.Name == "Earth").First().Y;
 
 		/// <summary> Возращает дистанцию до планеты Земля </summary>
 		public static double DistanceToEarth(double x1, double y1) => Math.Sqrt(Math.Pow(x1 - GetEarth_X, 2) + Math.Pow(y1 - GetEarth_Y, 2));
 
+		public static IReadOnlyDictionary<Planet, List<ASpaceship>> GetDictionary => DistanceForEarthDictoinary();
+
+		public static void Initialize(List<Planet> Planets, List<ASpaceship> SpaceShips)
+		{
+			planets = Planets; spaceShips = SpaceShips;
+		}
+
 		/// <summary> Распределить задачи и создать маршруты </summary>
-		public static Dictionary<Planet, List<ASpaceship>> CreateRoutes(Dictionary<Planet, List<ASpaceship>> XmlPlanetsAndShips)
+		public static IReadOnlyDictionary<Planet, List<ASpaceship>> CreateRoutes()
 		{
 			List<ASpaceship> shipsWay = new List<ASpaceship>();
 			Dictionary<Planet, List<ASpaceship>> planetsAndWaysShips = new Dictionary<Planet, List<ASpaceship>>();
 
-			foreach (KeyValuePair<Planet, List<ASpaceship>> keyValue in XmlPlanetsAndShips)
+			foreach (KeyValuePair<Planet, List<ASpaceship>> keyValue in GetDictionary)
 			{
 				int planetNeed = keyValue.Key.Need;
 
@@ -43,6 +54,22 @@ namespace SpaceFleetManager
 				}
 			}
 			return planetsAndWaysShips;
+		}
+
+		private static IReadOnlyDictionary<Planet, List<ASpaceship>> DistanceForEarthDictoinary()
+		{
+			Dictionary<Planet, List<ASpaceship>> planetsAndShips = new Dictionary<Planet, List<ASpaceship>>();
+
+			foreach (var planet in planets)
+			{
+				if (planet.Name != null)
+				{
+					// Формируем лист кораблей летящих до n-ой планеты
+					var listShips = spaceShips.Where(o => o.Get > DistanceToEarth(planet.X, planet.Y));
+					planetsAndShips.Add(planet, listShips.ToList());
+				}
+			}
+			return planetsAndShips;
 		}
 	}
 }

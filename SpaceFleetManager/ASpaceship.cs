@@ -2,7 +2,7 @@
 
 namespace SpaceFleetManager
 {
-	abstract class ASpaceship
+	public abstract class ASpaceship
 	{
 		public string Name { get; protected set; }
 		public int Capacity { get; protected set; }
