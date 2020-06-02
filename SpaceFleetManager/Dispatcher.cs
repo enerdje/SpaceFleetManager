@@ -7,19 +7,19 @@ namespace SpaceFleetManager
 	static class Dispatcher
 	{
 		/// <summary> Список планет </summary>
-		public static List<Planet> planets = new List<Planet>();
+		private static List<Planet> planets = new List<Planet>();
 
 		/// <summary> Список кораблей </summary>
-		public static IReadOnlyList<ASpaceship> spaceShips = new List<ASpaceship>();
+		private static List<ASpaceship> spaceShips = new List<ASpaceship>();
 
 		private static double GetEarth_X => planets.Where(o => o.Name == "Earth").First().X;
 
 		private static double GetEarth_Y => planets.Where(o => o.Name == "Earth").First().Y;
 
 		/// <summary> Возращает дистанцию до планеты Земля </summary>
-		public static double DistanceToEarth(double x1, double y1) => Math.Sqrt(Math.Pow(x1 - GetEarth_X, 2) + Math.Pow(y1 - GetEarth_Y, 2));
+		private static double DistanceToEarth(double x1, double y1) => Math.Sqrt(Math.Pow(x1 - GetEarth_X, 2) + Math.Pow(y1 - GetEarth_Y, 2));
 
-		public static IReadOnlyDictionary<Planet, List<ASpaceship>> GetDictionary => DistanceForEarthDictoinary();
+		private static IReadOnlyDictionary<Planet, List<ASpaceship>> GetDictionary => DistanceForEarthDictoinary();
 
 		public static void Initialize(List<Planet> Planets, List<ASpaceship> SpaceShips)
 		{
